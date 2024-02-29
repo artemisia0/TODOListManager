@@ -15,17 +15,56 @@ type Query {
   list: [Item!]!
 }
 
+input InputItem {
+  id: Int!
+  contents: String!
+}
+
+type Mutation {
+  createItem(item: InputItem): Item!
+  readItem(id: Int!): String!
+  updateItem(item: InputItem): Item!
+  deleteItem(id: Int!): Int!
+}
+
 type Item {
   id: Int!
   contents: String!
 }
 `;
 
+const db = [];
+
+const list = () => {
+	return db;
+};
+
+const createItem = (_, {item}) => {
+	db.push(item);
+	return item;
+};
+
+const readItem = (_, {id}) => {
+	return {id, contents:"helllo msg, gql works!"};
+};
+
+const updateItem = (_, {item}) => {
+	return item;
+};
+
+const deleteItem = (_, {id}) => {
+	return id;
+};
+
 const resolvers = {
 	Query: {
-		list: () => {
-			return [{id: 10, contents: "mymsg"}, {id: 66, contents:"hi!"}];
-		}
+		list
+	},
+	Mutation: {
+		createItem,
+		readItem,
+		updateItem,
+		deleteItem
 	}
 };
 
