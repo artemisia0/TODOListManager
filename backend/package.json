@@ -1,0 +1,16 @@
+{
+	"name": "backend",
+	"version": "1.0.0",
+	"description": "Backend (UI and API) for my web site.",
+	"scripts": {
+		"start": "node src/server.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "artemisia0",
+	"license": "MIT",
+	"dependencies": {
+		"apollo-server-express": "^3.13.0",
+		"express": "^4.18.2",
+		"graphql": "^16.8.1"
+	}
+}

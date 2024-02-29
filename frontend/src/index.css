@@ -29,3 +29,13 @@ button {
 input {
 	background-color: violet;
 }
+
+div {
+	margin: 15px;
+	text-align: center;
+}
+
+div.with-shadow {
+	display: inline-block;
+	box-shadow: darkgray 0px 0px 15px 2px;	
+}
