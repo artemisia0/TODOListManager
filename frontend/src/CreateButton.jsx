@@ -1,11 +1,11 @@
 import Button from '@mui/material/Button';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import CreateIcon from '@mui/icons-material/Create';
 
 
 export default function CreateButton() {
 	return (
 		<Button variant="outlined" size="small">
-			<FavoriteBorderIcon />
+			<CreateIcon />
 			Create
 		</Button>
 	);

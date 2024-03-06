@@ -35,9 +35,11 @@ function App() {
 						<DeleteButton />
 					</ButtonGroup>
 				</Box>
-				<Box display="flex" alignItems="center">
-					<IndexInput />
-					<ContentsInput />
+				<Box>
+					<Stack spacing={1} display="flex" alignItems="center">
+						<IndexInput />
+						<ContentsInput />
+					</Stack>
 				</Box>
 				<Box display="flex" alignItems="center">
 					<ContentsTable />
