@@ -1,0 +1,17 @@
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#5ab53f',
+    },
+    secondary: {
+      main: '#d22ed8',
+    },
+    background: {
+      default: '#0c0b0c',
+      paper: '#15191c',
+    },
+    success: {
+      main: '#00ff4b',
+    },
+    divider: 'rgba(111,154,111,0.52)',
+  },
