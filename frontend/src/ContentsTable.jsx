@@ -10,7 +10,7 @@ import Paper from '@mui/material/Paper';
 export default function ContentsTable() {
 	return (
 		<TableContainer component={Paper}>
-			<Table size="small">
+			<Table>
 				<TableHead>
 					<TableRow>
 						<TableCell>Index</TableCell>

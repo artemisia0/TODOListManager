@@ -25,27 +25,27 @@ import {Container, Grid, Stack, Box} from '@mui/material';
 
 function App() {
 	return (
-		<Box display="flex" alignItems="center" justifyContent="center">
-			<Stack spacing={3} display="flex" alignItems="center">
-				<Box display="flex" alignItems="center">
-					<ButtonGroup variant="outlined" size="small">
-						<CreateButton />
-						<ReadButton />
-						<UpdateButton />
-						<DeleteButton />
-					</ButtonGroup>
-				</Box>
-				<Box>
-					<Stack spacing={1} display="flex" alignItems="center">
-						<IndexInput />
-						<ContentsInput />
-					</Stack>
-				</Box>
-				<Box display="flex" alignItems="center">
-					<ContentsTable />
-				</Box>
-			</Stack>
-		</Box>
+		<Grid container spacing={2}>
+			<Grid item xs={6} justifyContent="center" display="flex">
+				<ButtonGroup variant="outlined" size="small">
+					<CreateButton />
+					<ReadButton />
+					<UpdateButton />
+					<DeleteButton />
+				</ButtonGroup>
+			</Grid>
+
+			<Grid item xs={6} justifyContent="center" display="flex">
+				<Stack spacing={1} direction="row">
+					<IndexInput />
+					<ContentsInput />
+				</Stack>
+			</Grid>
+			
+			<Grid item xs={12} justifyContent="center" display="flex">
+				<ContentsTable />
+			</Grid>
+		</Grid>
 	);
 }
 
