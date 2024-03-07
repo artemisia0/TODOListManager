@@ -17,10 +17,8 @@ import ContentsTable from './ContentsTable.jsx';
 import './index.css';
 
 import ButtonGroup from '@mui/material/ButtonGroup';
-import Paper from '@mui/material/Paper';
-import {green} from '@mui/material/colors';
 import {ThemeProvider, createTheme} from '@mui/material/styles';
-import {Container, Grid, Stack, Box} from '@mui/material';
+import {Grid, Stack} from '@mui/material';
 
 
 function App() {
