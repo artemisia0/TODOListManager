@@ -1,2 +1,2 @@
 cd frontend
-./run.sh
+npm i
