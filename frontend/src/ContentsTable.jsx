@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 
 export default function ContentsTable() {
 	return (
-		<TableContainer component={Paper}>
+		<TableContainer component={Paper} alignItems="center">
 			<Table>
 				<TableHead>
 					<TableRow>

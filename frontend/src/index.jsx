@@ -18,39 +18,47 @@ import './index.css';
 
 import ButtonGroup from '@mui/material/ButtonGroup';
 import {ThemeProvider, createTheme} from '@mui/material/styles';
-import {Grid, Stack} from '@mui/material';
+import {Box, Stack, Container} from '@mui/material';
 
 
 function App() {
 	return (
-		<Grid container spacing={2}>
-			<Grid item xs={6} justifyContent="center" display="flex">
-				<ButtonGroup variant="outlined" size="small">
-					<CreateButton />
-					<ReadButton />
-					<UpdateButton />
-					<DeleteButton />
-				</ButtonGroup>
-			</Grid>
+		<Box>
+			<Container>
+				<Stack spacing={4} alignItems="center">
+					<Box>
+						<ButtonGroup variant="outlined">
+							<CreateButton />
+							<ReadButton />
+							<UpdateButton />
+							<DeleteButton />
+						</ButtonGroup>
+					</Box>
 
-			<Grid item xs={6} justifyContent="center" display="flex">
-				<Stack spacing={1} direction="row">
-					<IndexInput />
-					<ContentsInput />
+					<Box>
+						<Stack spacing={1}>
+							<Container>
+								<IndexInput />
+							</Container>
+							<Container>
+								<ContentsInput />
+							</Container>
+						</Stack>
+					</Box>
+					
+					<Box>
+						<ContentsTable />
+					</Box>
 				</Stack>
-			</Grid>
-			
-			<Grid item xs={12} justifyContent="center" display="flex">
-				<ContentsTable />
-			</Grid>
-		</Grid>
+			</Container>
+		</Box>
 	);
 }
 
 function Index() {
 	const theme = createTheme({
 		palette: {                                                            
-			mode: 'dark',
+			mode: 'light',
 		}
 	});
 	
