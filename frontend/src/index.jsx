@@ -5,6 +5,7 @@ import '@fontsource/roboto/700.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {useState} from 'react';
 
 import CreateButton from './CreateButton.jsx';
 import ReadButton from './ReadButton.jsx';
@@ -21,34 +22,59 @@ import {ThemeProvider, createTheme} from '@mui/material/styles';
 import {Box, Stack, Container} from '@mui/material';
 
 
+async function fetchTableData() {
+  return [{index: 123, contents: 'fetched'}];
+}
+
 function App() {
+  const [contents, setContents] = useState("");
+  const [index, setIndex] = useState(0);
+  const [tableData, setTableData] = useState([{index: 0, contents: 'hello!'}]);
+
+  const updateTable = () => {
+    fetchTableData()
+      .then(
+        res => setTableData(res)
+      );
+  };
+
+  console.log("rerendered");
+
 	return (
 		<Box>
 			<Container>
 				<Stack spacing={4} alignItems="center">
-					<Box>
-						<ButtonGroup variant="outlined">
-							<CreateButton />
-							<ReadButton />
-							<UpdateButton />
-							<DeleteButton />
-						</ButtonGroup>
-					</Box>
 
 					<Box>
-						<Stack spacing={1}>
-							<Container>
-								<IndexInput />
+						<ButtonGroup variant="outlined">
+							<CreateButton updateTable={updateTable}
+		                        contents={contents} />
+              <ReadButton   tableData={tableData}
+                            index={index}
+                            setContents={setContents} />
+              <UpdateButton updateTable={updateTable}
+                            index={index}
+                            contents={contents} />
+              <DeleteButton updateTable={updateTable}
+                            index={index} />
+            </ButtonGroup>
+          </Box>
+
+          <Box>
+            <Stack spacing={1}>
+              <Container>
+								<IndexInput index={index} setIndex={setIndex} />
 							</Container>
 							<Container>
-								<ContentsInput />
+								<ContentsInput contents={contents} setContents={setContents} />
 							</Container>
 						</Stack>
 					</Box>
 					
 					<Box>
-						<ContentsTable />
+						<ContentsTable tableData={tableData} />
 					</Box>
+
 				</Stack>
 			</Container>
 		</Box>

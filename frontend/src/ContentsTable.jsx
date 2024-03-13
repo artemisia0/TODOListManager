@@ -7,9 +7,16 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 
-export default function ContentsTable() {
+export default function ContentsTable({tableData}) {
+  const rows = tableData.map(item =>
+    <TableRow key={item.index}>
+      <TableCell>{item.index}</TableCell>
+      <TableCell>{item.contents}</TableCell>
+    </TableRow>
+  );
+
 	return (
-		<TableContainer component={Paper} alignItems="center">
+		<TableContainer component={Paper}>
 			<Table>
 				<TableHead>
 					<TableRow>
@@ -18,10 +25,7 @@ export default function ContentsTable() {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					<TableRow>
-						<TableCell>0</TableCell>
-						<TableCell>Hello!!</TableCell>
-					</TableRow>
+		      {rows}
 				</TableBody>
 			</Table>
 		</TableContainer>
