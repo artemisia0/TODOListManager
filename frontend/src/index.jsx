@@ -23,13 +23,36 @@ import {Box, Stack, Container} from '@mui/material';
 
 
 async function fetchTableData() {
-  return [{index: 123, contents: 'fetched'}];
+  const gqlRequest = `
+  query {
+    list {
+      index,
+      contents
+    }
+  }
+  `;
+
+  const requestBody = {
+    "query": gqlRequest
+  };
+
+  const response = await fetch("http://localhost:8080/api", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(requestBody)
+  });
+
+  const jsonData = await response.json();
+
+  return jsonData.data.list;
 }
 
 function App() {
   const [contents, setContents] = useState("");
   const [index, setIndex] = useState(0);
-  const [tableData, setTableData] = useState([{index: 0, contents: 'hello!'}]);
+  const [tableData, setTableData] = useState([]);
 
   const updateTable = () => {
     fetchTableData()

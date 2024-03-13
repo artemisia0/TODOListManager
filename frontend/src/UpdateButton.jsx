@@ -3,8 +3,22 @@ import UpdateIcon from '@mui/icons-material/Update';
 
 
 export default function UpdateButton({updateTable, index, contents}) {
-  const callback = () => {
-    updateTable();
+  const callback = async () => {
+    const query = `
+    mutation {
+      updateItem(index: ${index}, contents: "${contents}")
+    }
+    `;
+
+    await fetch("http://localhost:8080/api", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({query})
+    });
+
+    await updateTable();
   };
 
 	return (

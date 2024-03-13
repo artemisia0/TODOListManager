@@ -40,7 +40,7 @@ const updateItem = (_, {index, contents}) => {
 
 const deleteItem = (_, {index}) => {
   const contents = db[index];
-  db[index] = null;
+  db.splice(index, 1);
   return contents;
 };
 
