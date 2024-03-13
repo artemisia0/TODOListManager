@@ -1,59 +1,47 @@
 const express = require('express');
 const {ApolloServer} = require('apollo-server-express');
+const fs = require('fs');
 
 
 const app = express();
 
 app.use("/static", express.static(
 	"/home/boss/dev/TODOListManager/frontend/build/static"));
+
 app.get("/home", (req, res) => {
 	res.sendFile("/home/boss/dev/TODOListManager/frontend/build/index.html");
 });
 
-const typeDefs = `
-type Query {
-  list: [Item!]!
-}
+const typeDefs = fs.readFileSync('./src/scheme.graphql',
+  {encoding: 'utf8', flag: 'r'});
 
-input InputItem {
-  id: Int!
-  contents: String!
-}
-
-type Mutation {
-  createItem(item: InputItem): Item!
-  readItem(id: Int!): String!
-  updateItem(item: InputItem): Item!
-  deleteItem(id: Int!): Int!
-}
-
-type Item {
-  id: Int!
-  contents: String!
-}
-`;
-
-const db = [];
+let db = [];
 
 const list = () => {
-	return db;
+  let result = [];
+  for (let i = 0; i < db.length; i++) {
+    result.push({index: i, contents: db[i]});
+  }
+  return result;
 };
 
-const createItem = (_, {item}) => {
-	db.push(item);
-	return item;
+const createItem = (_, {contents}) => {
+  db.push(contents);
+  return contents;
 };
 
-const readItem = (_, {id}) => {
-	return {id, contents:"helllo msg, gql works!"};
+const readItem = (_, {index}) => {
+  return db[index];
 };
 
-const updateItem = (_, {item}) => {
-	return item;
+const updateItem = (_, {index, contents}) => {
+  db[index] = contents;
 };
 
-const deleteItem = (_, {id}) => {
-	return id;
+const deleteItem = (_, {index}) => {
+  const contents = db[index];
+  db[index] = null;
+  return contents;
 };
 
 const resolvers = {

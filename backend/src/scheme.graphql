@@ -1,0 +1,16 @@
+type Query {
+  list: [Item!]!
+}
+
+type Mutation {
+  createItem(contents: String!): String
+  readItem(index: Int!): String!
+  updateItem(index: Int!, contents: String!): String
+  deleteItem(index: Int!): String
+}
+
+type Item {
+  index: Int!
+  contents: String!
+}
+
