@@ -49,6 +49,8 @@ async function fetchTableData() {
   return jsonData.data.list;
 }
 
+let initialized = false;
+
 function App() {
   const [contents, setContents] = useState("");
   const [index, setIndex] = useState(0);
@@ -60,6 +62,11 @@ function App() {
         res => setTableData(res)
       );
   };
+
+	if (!initialized) {
+	  updateTable();
+	  initialized = true;
+  }
 
   console.log("rerendered");
 
@@ -110,7 +117,7 @@ function Index() {
 			mode: 'light',
 		}
 	});
-	
+
 	return (
 		<ThemeProvider theme={theme}>
 			<App />
@@ -119,3 +126,4 @@ function Index() {
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<Index />);
+
